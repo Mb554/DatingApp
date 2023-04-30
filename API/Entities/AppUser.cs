@@ -20,11 +20,8 @@ namespace API.Entities
         public string Interest {get;set;}
         public string City{get;set;}
         public List<Photo> Photos {get;set;} = new();
-       // public int GetAge(){
-          //  return DateOfBirth.CalculateAge();
-       // }
 
-
-        
+        public List<UserLike> LikedByUsers { get; set; }  
+        public List<UserLike> LikedUsers{get;set;}
     }
 }
