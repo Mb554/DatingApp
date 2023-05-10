@@ -6,15 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class AdminController: BaseApiController
+    public class AdminController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
         public AdminController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
-
         }
-
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("users-with-roles")]
@@ -35,7 +33,7 @@ namespace API.Controllers
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpPost("edit-roles/{username}")]
-        public async Task<ActionResult> EditRoles(string username, [FromQuery] string roles)
+        public async Task<ActionResult> EditRoles(string username, [FromQuery]string roles)
         {
             if (string.IsNullOrEmpty(roles)) return BadRequest("You must select at least one role");
 
