@@ -48,6 +48,11 @@ namespace API.Data.Migrations
                 table: "AspNetUsers",
                 newName: "Id");
 
+            migrationBuilder.RenameColumn(
+                name: "Interest",
+                table: "AspNetUsers",
+                newName: "SecurityStamp");
+
             migrationBuilder.AlterColumn<string>(
                 name: "PasswordHash",
                 table: "AspNetUsers",
@@ -71,6 +76,12 @@ namespace API.Data.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
+                name: "Country",
+                table: "AspNetUsers",
+                type: "TEXT",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
                 name: "Email",
                 table: "AspNetUsers",
                 type: "TEXT",
@@ -83,6 +94,12 @@ namespace API.Data.Migrations
                 type: "INTEGER",
                 nullable: false,
                 defaultValue: false);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Interests",
+                table: "AspNetUsers",
+                type: "TEXT",
+                nullable: true);
 
             migrationBuilder.AddColumn<bool>(
                 name: "LockoutEnabled",
@@ -123,12 +140,6 @@ namespace API.Data.Migrations
                 type: "INTEGER",
                 nullable: false,
                 defaultValue: false);
-
-            migrationBuilder.AddColumn<string>(
-                name: "SecurityStamp",
-                table: "AspNetUsers",
-                type: "TEXT",
-                nullable: true);
 
             migrationBuilder.AddColumn<bool>(
                 name: "TwoFactorEnabled",
@@ -403,11 +414,19 @@ namespace API.Data.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
+                name: "Country",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
                 name: "Email",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
                 name: "EmailConfirmed",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Interests",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
@@ -435,10 +454,6 @@ namespace API.Data.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "SecurityStamp",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
                 name: "TwoFactorEnabled",
                 table: "AspNetUsers");
 
@@ -450,6 +465,11 @@ namespace API.Data.Migrations
                 name: "Id",
                 table: "Users",
                 newName: "ID");
+
+            migrationBuilder.RenameColumn(
+                name: "SecurityStamp",
+                table: "Users",
+                newName: "Interest");
 
             migrationBuilder.AlterColumn<byte[]>(
                 name: "PasswordHash",
