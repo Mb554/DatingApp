@@ -42,7 +42,7 @@ namespace API.Controllers
             Visiter = visitUser.Id
         };
         
-        visitUser.viewedUser.Add(userVisit);
+        visitUser.VisitedUser.Add(userVisit);
         
         if(await _uow.Complete()) return Ok();
         return BadRequest("Failed to view visitor");
