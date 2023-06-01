@@ -26,5 +26,11 @@ export class MemberCardComponent implements OnInit {
 
   }
 
+  addVipVisit(member: Member){
+    this.memberService.addVipVisit(member.userName).subscribe({
+      next: () => this.toastr.success('You have visited ' + member.knownAs)
+    })
+  }
+
 
 }

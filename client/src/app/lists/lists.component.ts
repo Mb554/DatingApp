@@ -10,7 +10,7 @@ import { Pagination } from '../_models/pagination';
 })
 export class ListsComponent implements OnInit {
   members: Member[] | undefined;
-  predicate = 'liked'
+  predicate = 'liked' || 'viewed'
   pageNumber = 1;
   pageSize = 5;
   pagination: Pagination|undefined
@@ -19,6 +19,7 @@ export class ListsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLikes();
+    
   }
 
 
@@ -31,6 +32,16 @@ export class ListsComponent implements OnInit {
       }
     })
   }
+
+  LoadVipVisits(){
+    this.memberservice.getVipVisite(this.predicate, this.pageNumber, this.pageSize).subscribe({
+      next: response => {
+        this.members = response.result;
+        this.pagination = response.pagination;
+      }
+    })
+  }
+
 
   pageChanged(event: any) {
     if (this.pageNumber !== event.page){

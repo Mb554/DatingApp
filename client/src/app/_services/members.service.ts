@@ -100,11 +100,19 @@ export class MembersService {
   addLike(username: string) {
     return this.http.post(this.baseUrl + 'likes/' + username, {});
   }
+  addVipVisit(username: string){
+    return this.http.post(this.baseUrl + 'visits/' + username,{});
+  }
   
   getLikes(predicate: string, pageNumber: number, pageSize: number ) {
     let params = getPaginationHeaders(pageNumber, pageSize);
     params = params.append('predicate', predicate);
     return getPaginatedResult<Member[]>(this.baseUrl + 'likes', params, this.http);
+  }
+  getVipVisite(predicate: string, pageNumber: number, pageSiza: number){
+    let params = getPaginationHeaders(pageNumber,pageSiza);
+    params = params.append('predicate', predicate);
+    return getPaginatedResult<Member[]>(this.baseUrl + 'likes',params,this.http);
   }
 
   

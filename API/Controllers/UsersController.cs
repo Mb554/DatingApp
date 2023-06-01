@@ -53,7 +53,9 @@ namespace API.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
-            return await _uow.UserRepository.GetMemberAsync(username);
+             var currentUsername = User.GetUsername();
+            return await _uow.UserRepository.GetMemberAsync(username, 
+                isOpen: currentUsername == username);
            
         }
         
@@ -111,7 +113,7 @@ namespace API.Controllers
 
             if (user == null) return NotFound();
 
-            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+            var photo = await _uow.photoRepository.GetPhotoById(photoId);
 
             if (photo == null) return NotFound();
 
@@ -132,7 +134,7 @@ namespace API.Controllers
         {
             var user = await _uow.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
-            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+            var photo = await _uow.photoRepository.GetPhotoById(photoId);
 
             if (photo == null) return NotFound();
 
